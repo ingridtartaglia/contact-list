@@ -1,0 +1,85 @@
+@mixin no-line {
+    outline: none;
+    outline-color: none;
+}
+@mixin hidden-padding {
+    padding: 2em;
+}
+
+$clear: 0;
+
+/////////////
+.container {
+    @media (min-width: 1199px) {
+        width: 840px;
+    }
+    @media (min-width: 991px) {
+        width: 640px;
+    }
+    @media (min-width: 768px) {
+        width: 440px;
+    }
+    @media (max-width: 767px) {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
+
+body {
+    font-family: 'Delius', cursive;
+    background: #e3e3e3;
+}
+
+button {
+    border-radius: $clear !important;
+}
+
+// header
+.header {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    h1 {
+        display: inline;
+        margin: $clear;
+        @media screen and (max-width: 768px) {
+            font-size: 2.5em;
+        }
+    }
+    .btn { padding: $clear; }
+    &:focus, &:active { @include no-line; }
+}
+
+// add form
+#add {
+    form {
+        .box { @include hidden-padding; }
+    }
+}
+
+// contacts table
+@media screen and (max-width: 767px) {
+    .table-responsive { border: $clear; }
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle !important;
+}
+
+tbody {
+    .btn { @include no-line; }
+    .hidden-info { padding: $clear !important; }
+}
+
+// hidden divs
+#view > .box, #edit > .box, #delete > .box {
+    @include hidden-padding;
+}
+
+
+// forms
+.form-control {
+    border-radius: $clear;
+    &:focus {
+        @include no-line;
+    }
+}

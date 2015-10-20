@@ -1,17 +1,132 @@
-<html>
-    <head>
-        <title>#18 - Contact List</title>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="styles.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
+<html ng-app="contactList">
+<head>
+    <title>#18 - Contact List</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Delius' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-controller="contactListCtrl">
 
+    <!-- Header -->
+    <div class="container">
+        <div class="row">
+            <section class="header">
+                <h1><strong>My Contact List</strong></h1>
+                <button type="button" class="btn btn-link pull-right" ng-click="addCollapsed = !addCollapsed"><i class="fa fa-plus-circle fa-3x text-success"></i></button>
+            </section>
 
+            <!-- add form -->
+            <section id="add" uib-collapse="addCollapsed">
+                <form name="addForm">
+                    <div class="box">
+                        <div class="form-group">
+                            <label for="contact-name">Name</label>
+                            <input type="name" class="form-control" ng-model="contact.name" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-name">Lastname</label>
+                            <input type="name" class="form-control" ng-model="contact.lastname" placeholder="Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" class="form-control" ng-model="contact.email" placeholder="johndoe@myemail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone</label>
+                            <input type="tel" class="form-control" ng-model="contact.phone" placeholder="(021) 98765-4321" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-name">Address</label>
+                            <input type="text" class="form-control" ng-model="contact.address" placeholder="75 Github Street, Rio de Janeiro - Brazil">
+                        </div>
+                        <button type="button" class="btn btn-default" ng-click="addCollapsed = true">Cancel</button>
+                        <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+                    </div>
+                </form>
+            </section>
 
+            <!-- contacts table -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Lastname</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="contact in contacts">
+                            <td>{{contact.name}}</td>
+                            <td>{{contact.lastname}}</td>
+                            <td>
+                                <a href="#view" class="btn btn-link btn-icon" ng-click="viewCollapsed = !viewCollapsed; editCollapsed = true; deleteCollapsed = true">
+                                    <i class="fa fa-search-plus text-primary"></i>
+                                </a>
+                                <a href="#edit" class="btn btn-link btn-icon" ng-click="editCollapsed = !editCollapsed; viewCollapsed = true; deleteCollapsed = true">
+                                    <i class="fa fa-pencil text-success"></i>
+                                </a>
+                                <a href="#delete" class="btn btn-link btn-icon" ng-click="deleteCollapsed = !deleteCollapsed; viewCollapsed = true; editCollapsed = true">
+                                    <i class="fa fa-trash-o text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-repeat-end>
+                            <td colspan="6" class="hidden-info">
+                                <div id="view" uib-collapse="viewCollapsed">
+                                    <div class="box">
+                                        <p><strong>E-mail:</strong> {{contact.email}}</p>
+                                        <p><strong>Phone:</strong> {{contact.phone}}</p>
+                                        <p><strong>Address:</strong> {{contact.address}}</p>
+                                        <button type="button" class="btn btn-default" ng-click="viewCollapsed = true">Cancel</button>
+                                        <button type="button" class="btn btn-info" ng-click="viewCollapsed = true; editCollapsed = false">Edit</button>
+                                    </div>
+                                </div>
+                                <div id="edit" uib-collapse="editCollapsed">
+                                    <form name="editForm" class="box">
+                                        <div class="form-group">
+                                            <label for="contact-name">Name</label>
+                                            <input type="name" class="form-control" ng-model="contact.name" placeholder="{{contact.name}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-name">Lastname</label>
+                                            <input type="name" class="form-control" ng-model="contact.lastname" placeholder="{{contact.lastname}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-email">Email</label>
+                                            <input type="email" class="form-control" ng-model="contact.email" placeholder="{{contact.email}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-phone">Phone</label>
+                                            <input type="tel" class="form-control" ng-model="contact.phone" placeholder="{{contact.phone}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-name">Address</label>
+                                            <input type="name" class="form-control" ng-model="contact.address" placeholder="{{contact.address}}">
+                                        </div>
+                                        <button type="button" class="btn btn-default" ng-click="editCollapsed = true">Cancel</button>
+                                        <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+                                    </form>
+                                </div>
+                                <div id="delete" uib-collapse="deleteCollapsed">
+                                    <div class="box">
+                                        <p>Are you sure?</p>
+                                        <button type="button" class="btn btn-default" ng-click="deleteCollapsed = true">Cancel</button>
+                                        <button type="button" class="btn btn-danger" ng-click="delete()">Delete</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="app.js"></script>
-    </body>
+</body>
 </html>

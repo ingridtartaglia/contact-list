@@ -1,3 +1,61 @@
+@media (min-width: 1199px) {
+  .container {
+    width: 840px; } }
+@media (min-width: 991px) {
+  .container {
+    width: 640px; } }
+@media (min-width: 768px) {
+  .container {
+    width: 440px; } }
+@media (max-width: 767px) {
+  .container {
+    padding-left: 2em;
+    padding-right: 2em; } }
 
+body {
+  font-family: 'Delius', cursive;
+  background: #e3e3e3; }
+
+button {
+  border-radius: 0 !important; }
+
+.header {
+  margin-top: 3em;
+  margin-bottom: 2em; }
+  .header h1 {
+    display: inline;
+    margin: 0; }
+    @media screen and (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5em; } }
+  .header .btn {
+    padding: 0; }
+  .header:focus, .header:active {
+    outline: none;
+    outline-color: none; }
+
+#add form .box {
+  padding: 2em; }
+
+@media screen and (max-width: 767px) {
+  .table-responsive {
+    border: 0; } }
+.table > tbody > tr > td {
+  vertical-align: middle !important; }
+
+tbody .btn {
+  outline: none;
+  outline-color: none; }
+tbody .hidden-info {
+  padding: 0 !important; }
+
+#view > .box, #edit > .box, #delete > .box {
+  padding: 2em; }
+
+.form-control {
+  border-radius: 0; }
+  .form-control:focus {
+    outline: none;
+    outline-color: none; }
 
 /*# sourceMappingURL=styles.css.map */
