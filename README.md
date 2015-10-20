@@ -5,4 +5,7 @@ Technologies used:
 - HTML
 - CSS (SASS)
 - JavaScript (AngularJS)
-- - Bower
+- Bower
+- Angular Bootstrap
+- Firebase
+- Font Awesome
