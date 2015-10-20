@@ -40,6 +40,9 @@ button {
 @media screen and (max-width: 767px) {
   .table-responsive {
     border: 0; } }
+.search-input {
+  margin-bottom: 1em; }
+
 .table > tbody > tr > td {
   vertical-align: middle !important; }
 

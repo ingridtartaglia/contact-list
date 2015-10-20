@@ -30,9 +30,7 @@ body {
     background: #e3e3e3;
 }
 
-button {
-    border-radius: $clear !important;
-}
+button { border-radius: $clear !important; }
 
 // header
 .header {
@@ -41,9 +39,7 @@ button {
     h1 {
         display: inline;
         margin: $clear;
-        @media screen and (max-width: 768px) {
-            font-size: 2.5em;
-        }
+        @media screen and (max-width: 768px) { font-size: 2.5em; }
     }
     .btn { padding: $clear; }
     &:focus, &:active { @include no-line; }
@@ -61,6 +57,10 @@ button {
     .table-responsive { border: $clear; }
 }
 
+.search-input {
+    margin-bottom: 1em;
+}
+
 .table > tbody > tr > td {
     vertical-align: middle !important;
 }
@@ -75,11 +75,8 @@ tbody {
     @include hidden-padding;
 }
 
-
 // forms
 .form-control {
     border-radius: $clear;
-    &:focus {
-        @include no-line;
-    }
+    &:focus { @include no-line; }
 }
